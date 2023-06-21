@@ -1,0 +1,36 @@
+#Mysql server details
+database=mysql
+db_password=YES
+db_username=root
+db_url=jdbc:mysql://localhost:3306/test
+#Java data type details
+BIGINT=bigint
+BLOB=byte[]
+BOOLEAN=boolean
+BYTE=byte[]
+CHAR=String
+CHARACTER=String
+CLOB=byte[]
+DATE=java.sql.Date
+DATETIME=java.sql.Timestamp
+DECIMAL=java.math.BigDecimal
+NUMERIC=java.math.BigDecimal
+FLOAT=double
+DOUBLE=double
+INT8=long
+INTEGER=int
+INT=int
+SMALLFLOAT=float2
+SMALLINT=short
+TEXT=String
+VARCHAR=String
+#Constants details
+package=com.vnit.api.entity;
+imports=javax.persistence.Column;javax.persistence.Entity;javax.persistence.GeneratedValue;javax.persistence.GenerationType;javax.persistence.Id;javax.persistence.Table;io.swagger.annotations.ApiModelProperty;
+entity=@Entity
+table=@Table
+column=@Column
+id=@Id
+generatedValue=@GeneratedValue
+strategy=GenerationType.IDENTITY
+apiProperty=@ApiModelProperty
