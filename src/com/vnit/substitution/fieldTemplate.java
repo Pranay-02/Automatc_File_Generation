@@ -7,14 +7,15 @@ public class fieldTemplate {
     public String getTemplate() {
         String temp = "";
         
-        temp += "#package_name#" + "\n\n";
+        temp += "#00$01$m:constantsMap:package_name$#" + "\n\n";
 
-        temp += "#imports#" + "\n\n";
+        temp += "#00$01$m:constantsMap:imports$#" + "\n\n";
 
+        // table name from user
         temp += "@Entity\n" + 
-                "@Table(name=\"#table_name#\")\n";
+                "@Table(name=\"" + "#$00$01$m:constantsMap:table_name$#" +  "\")\n";
 
-        temp += "public class #table_name#Mst {\n";
+        temp += "public class"  + "#$00$01$m:constantsMap:table_name$#" + "Mst {\n";
         
         // temp += "}";
 

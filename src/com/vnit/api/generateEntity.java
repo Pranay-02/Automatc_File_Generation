@@ -34,8 +34,8 @@ public class generateEntity {
         db.fillMap(propertiesFillPath + "properties.txt");
 
         Connection con = db.createDBConnection();   
-
-        String file = entity.generateFile("item", con, db, temp);
+        
+        String file = entity.generateFile("customer", con, db, temp);
         try {
             ut.createFileFromString(propertiesFillPath + "entity\\itemMst.java", file);
         }

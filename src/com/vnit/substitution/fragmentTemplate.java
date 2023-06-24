@@ -5,6 +5,9 @@ public class fragmentTemplate {
     public String getFieldFragments() {
         String temp = "";
         // to be changed
+
+        // "#00$02$m:fld:columnName$m:fld_map:required$#"
+
         temp += "@ApiNodelProperty(required = #required#, value = \"(#size#)\")\n";
         temp += "#@Id\n#";
         temp += "#@GeneratedValue(strategy=GenerationType.IDENTITY)\n#";
@@ -19,5 +22,4 @@ public class fragmentTemplate {
 
         return temp;
     }
-
 }

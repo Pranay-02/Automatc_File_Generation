@@ -6,11 +6,11 @@ import java.io.*;
 import com.vnit.api.entity.Object;
 
 public class dbUtility {
-    private Map<String, String> variableMap = new HashMap<>();
-    private Map<String, String> dbDetailMap = new HashMap<>();
-    private Map<String, String> constantsMap = new HashMap<>();
+    static public Map<String, String> variableMap = new HashMap<>();
+    static public Map<String, String> dbDetailMap = new HashMap<>();
+    static public Map<String, String> constantsMap = new HashMap<>();
     
-    static public List<Map<String, String>> fld = new ArrayList<>();
+    static public Map<String, Map<String, String>> fld = new HashMap<>();
     
     public void fillMap(String filePath) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -94,7 +94,7 @@ public class dbUtility {
                 fld_map.put("size", String.valueOf(columnSize));
                 fld_map.put("required", required ? "true" : "false");
 
-                fld.add(fld_map);
+                fld.put(columnName, fld_map);
             }
         } 
         catch (SQLException e) {
