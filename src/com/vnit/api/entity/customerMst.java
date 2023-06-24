@@ -1,41 +1,35 @@
-package com.vnit.api.entity;
+#00$01$m:constantsMap:package_name$#
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import io.swagger.annotations.ApiModelProperty;
+#00$01$m:constantsMap:imports$#
 
 @Entity
-@Table(name = "customer")
-public class customerMst {
+@Table(name="#$00$01$m:constantsMap:table_name$#")
 
-@ApiModelProperty(required = false, value = "(size = 10)")
-@Id
-@GeneratedValue(strategy=GenerationType.IDENTITY)
-@Column(name = "ccode")
-private int ccode;
-
-public int getCcode() {
-	return ccode;
+public class#$00$01$m:constantsMap:table_name$#Mst {
+@ApiNodelProperty(required = #00$02$m:fld:ccode$m:fld_map:required$#, value = "(#00$02$m:fld:ccode$m:fld_map:size$#)")
+#@Id#
+#@GeneratedValue(strategy=GenerationType.IDENTITY)#
+@Column(name = "#00$02$m:fld:ccode$m:fld_map:column_name$#")
+private #00$02$m:fld:ccode$m:fld_map:column_type$# #00$02$m:fld:ccode$m:fld_map:column_name$#;
+public #00$02$m:fld:ccode$m:fld_map:column_name$# get#00$02$m:fld:ccode$m:fld_map:column_name$#() {
+	return #00$02$m:fld:ccode$m:fld_map:column_name$#
 }
 
-public void setCcode() {
-	this.ccode = ccode;
+public void set#00$02$m:fld:ccode$m:fld_map:column_name$#() {
+	this.#00$02$m:fld:ccode$m:fld_map:column_name$# = #00$02$m:fld:ccode$m:fld_map:column_name$#
 }
 
-@ApiModelProperty(required = true, value = "(size = 100) (required)")
-@Column(name = "cname")
-private String cname;
-
-public String getCname() {
-	return cname;
+@ApiNodelProperty(required = #00$02$m:fld:cname$m:fld_map:required$#, value = "(#00$02$m:fld:cname$m:fld_map:size$#)")
+#@Id#
+#@GeneratedValue(strategy=GenerationType.IDENTITY)#
+@Column(name = "#00$02$m:fld:cname$m:fld_map:column_name$#")
+private #00$02$m:fld:cname$m:fld_map:column_type$# #00$02$m:fld:cname$m:fld_map:column_name$#;
+public #00$02$m:fld:cname$m:fld_map:column_name$# get#00$02$m:fld:cname$m:fld_map:column_name$#() {
+	return #00$02$m:fld:cname$m:fld_map:column_name$#
 }
 
-public void setCname() {
-	this.cname = cname;
+public void set#00$02$m:fld:cname$m:fld_map:column_name$#() {
+	this.#00$02$m:fld:cname$m:fld_map:column_name$# = #00$02$m:fld:cname$m:fld_map:column_name$#
 }
 
 }

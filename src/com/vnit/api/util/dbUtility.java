@@ -6,11 +6,6 @@ import java.io.*;
 import com.vnit.api.entity.Object;
 
 public class dbUtility {
-    static public Map<String, String> variableMap = new HashMap<>();
-    static public Map<String, String> dbDetailMap = new HashMap<>();
-    static public Map<String, String> constantsMap = new HashMap<>();
-    
-    static public Map<String, Map<String, String>> fld = new HashMap<>();
     
     public void fillMap(String filePath) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -24,15 +19,15 @@ public class dbUtility {
                 else {
                     String []str = line.split("=");
                     if(currentMap.equals("Mysql server details")) {
-                        dbDetailMap.put(str[0], str[1]);
+                        mapsUtil.dbDetailMap.put(str[0], str[1]);
                     }
                     else 
                     if(currentMap.equals("Java data type details")) {
-                        variableMap.put(str[0], str[1]);
+                        mapsUtil.variableMap.put(str[0], str[1]);
                     }
                     else 
                     if(currentMap.equals("Constants details")) {
-                        constantsMap.put(str[0], str[1]);
+                        mapsUtil.constantsMap.put(str[0], str[1]);
                     }
                 }
             }
@@ -94,7 +89,7 @@ public class dbUtility {
                 fld_map.put("size", String.valueOf(columnSize));
                 fld_map.put("required", required ? "true" : "false");
 
-                fld.put(columnName, fld_map);
+                mapsUtil.fld.put(columnName, fld_map);
             }
         } 
         catch (SQLException e) {
@@ -105,14 +100,14 @@ public class dbUtility {
     }
 
     public String getDBVariableMapping(String dbVariable) {
-        return variableMap.get(dbVariable);
+        return mapsUtil.variableMap.get(dbVariable);
     }
 
     public String getDBDetailMapping(String dbDetail) {
-        return dbDetailMap.get(dbDetail);
+        return mapsUtil.dbDetailMap.get(dbDetail);
     }
 
     public String getConstantDetailMapping(String constant) {
-        return constantsMap.get(constant);
+        return mapsUtil.constantsMap.get(constant);
     }
 }

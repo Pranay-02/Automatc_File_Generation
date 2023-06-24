@@ -28,10 +28,6 @@ public class fileUtility {
         }
     }
 
-    public String substitue(String source, String variable, String target) {
-        return source.replaceAll(variable, target);
-    }
-
     public String getFilePath() {
         return "D:\\VNIT 2nd year\\Project\\Task\\src\\com\\vnit\\api\\";
     }

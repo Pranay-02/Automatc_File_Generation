@@ -11,7 +11,7 @@ public class substitution {
     }
 
     public String getPackageName() {
-        return "package " + db.getConstantDetailMapping("package") + "\n\n";
+        return "package " + db.getConstantDetailMapping("package_name") + "\n\n";
     }
     
     public String getHeaderFiles() {

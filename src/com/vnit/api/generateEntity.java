@@ -19,7 +19,11 @@ public class generateEntity {
     
     public String generateFile(String tableName, Connection con, dbUtility db, template temp) {
         ArrayList<Object> columns = db.getColumns(tableName, con);
-        String fileContent = temp.getFile(tableName, columns, db);
+        // String fileContent = temp.getFile(tableName, columns, db);
+
+        ProcessSubstitution processSubstitution = new ProcessSubstitution();
+        String fileContent = processSubstitution.getCompleteTemplate(columns);
+
         return fileContent;
     }
 
@@ -35,13 +39,17 @@ public class generateEntity {
 
         Connection con = db.createDBConnection();   
         
+        mapsUtil.constantsMap.put("table_name", "customer");
         String file = entity.generateFile("customer", con, db, temp);
+        
         try {
-            ut.createFileFromString(propertiesFillPath + "entity\\itemMst.java", file);
+            ut.createFileFromString(propertiesFillPath + "entity\\customerMst.java", file);
         }
         catch(IOException exception) {
             System.out.println("Not able to create file");
-        }       
+        }
+        
+        
     }
 
 }

@@ -27,3 +27,10 @@ VARCHAR=String
 #Constants details
 package_name=com.vnit.api.entity;
 imports=javax.persistence.Column;javax.persistence.Entity;javax.persistence.GeneratedValue;javax.persistence.GenerationType;javax.persistence.Id;javax.persistence.Table;io.swagger.annotations.ApiModelProperty;
+entity=@Entity
+table=@Table
+column=@Column
+id=@Id
+generatedValue=@GeneratedValue
+strategy=GenerationType.IDENTITY
+apiProperty=@ApiModelProperty

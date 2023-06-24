@@ -5,8 +5,8 @@ import java.util.List;
 
 public class utility {
     
-    public List<String> extractSubstringsByHash(String input) {
-        List<String> substrings = new ArrayList<>();
+    public ArrayList<String> extractSubstringsByHash(String input) {
+        ArrayList<String> substrings = new ArrayList<>();
         int startIndex = input.indexOf('#');
         
         while (startIndex != -1) {
@@ -23,8 +23,8 @@ public class utility {
         return substrings;
     }
 
-     public List<String> extractTokensByDollar(String input) {
-        List<String> tokens = new ArrayList<>();
+     public ArrayList<String> extractTokensByDollar(String input) {
+        ArrayList<String> tokens = new ArrayList<>();
         
         String[] splitTokens = input.split("\\$");
         
@@ -43,8 +43,8 @@ public class utility {
         return tokens;
     }
 
-    public List<String> extractTokensBySemiColon(String input) {
-        List<String> tokens = new ArrayList<>();
+    public ArrayList<String> extractTokensBySemiColon(String input) {
+        ArrayList<String> tokens = new ArrayList<>();
         
         String[] splitTokens = input.split("\\:");
         
