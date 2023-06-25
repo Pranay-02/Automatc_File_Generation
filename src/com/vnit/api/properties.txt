@@ -25,8 +25,8 @@ SMALLINT=short
 TEXT=String
 VARCHAR=String
 #Constants details
-package_name=com.vnit.api.entity;
-imports=javax.persistence.Column;javax.persistence.Entity;javax.persistence.GeneratedValue;javax.persistence.GenerationType;javax.persistence.Id;javax.persistence.Table;io.swagger.annotations.ApiModelProperty;
+package_name=package com.vnit.api.entity;
+imports=import javax.persistence.Column;import javax.persistence.Entity;import javax.persistence.GeneratedValue;import javax.persistence.GenerationType;import javax.persistence.Id;import javax.persistence.Table;import io.swagger.annotations.ApiModelProperty;
 entity=@Entity
 table=@Table
 column=@Column

@@ -9,8 +9,8 @@ public class fragmentTemplate {
         temp += " value = \"(#00$02$m:fld:" + columnName +"$m:fld_map:size$#)\")\n";
 
     //  for primary key only
-        temp += "#@Id#\n";
-        temp += "#@GeneratedValue(strategy=GenerationType.IDENTITY)#\n";
+        // temp += "#@Id#\n";
+        // temp += "#@GeneratedValue(strategy=GenerationType.IDENTITY)#\n";
         
         temp += "@Column(name = \"#00$02$m:fld:" + columnName + "$m:fld_map:column_name$#\")\n";
         temp += "private #00$02$m:fld:" + columnName + "$m:fld_map:column_type$# #00$02$m:fld:" + columnName + "$m:fld_map:column_name$#;\n";

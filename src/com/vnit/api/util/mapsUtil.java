@@ -9,4 +9,5 @@ public class mapsUtil {
     static public Map<String, String> dbDetailMap = new HashMap<>();
     static public Map<String, String> constantsMap = new HashMap<>();
     static public Map<String, Map<String, String>> fld = new HashMap<>();
+    static public Map<String, String> substitutionMap = new HashMap<>();
 }

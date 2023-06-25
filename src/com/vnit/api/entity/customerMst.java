@@ -1,35 +1,30 @@
-#00$01$m:constantsMap:package_name$#
+package com.vnit.api.entity;
 
-#00$01$m:constantsMap:imports$#
+import javax.persistence.Column;import javax.persistence.Entity;import javax.persistence.GeneratedValue;import javax.persistence.GenerationType;import javax.persistence.Id;import javax.persistence.Table;import io.swagger.annotations.ApiModelProperty;
 
 @Entity
-@Table(name="#$00$01$m:constantsMap:table_name$#")
-
-public class#$00$01$m:constantsMap:table_name$#Mst {
-@ApiNodelProperty(required = #00$02$m:fld:ccode$m:fld_map:required$#, value = "(#00$02$m:fld:ccode$m:fld_map:size$#)")
-#@Id#
-#@GeneratedValue(strategy=GenerationType.IDENTITY)#
-@Column(name = "#00$02$m:fld:ccode$m:fld_map:column_name$#")
-private #00$02$m:fld:ccode$m:fld_map:column_type$# #00$02$m:fld:ccode$m:fld_map:column_name$#;
-public #00$02$m:fld:ccode$m:fld_map:column_name$# get#00$02$m:fld:ccode$m:fld_map:column_name$#() {
-	return #00$02$m:fld:ccode$m:fld_map:column_name$#
+@Table(name="customer")
+public class customerMst {
+@ApiNodelProperty(required = {size=10, column_name=ccode, column_type=int, primary_key=true, required=false}, value = "({size=10, column_name=ccode, column_type=int, primary_key=true, required=false})")
+@Column(name = "{size=10, column_name=ccode, column_type=int, primary_key=true, required=false}")
+private {size=10, column_name=ccode, column_type=int, primary_key=true, required=false} {size=10, column_name=ccode, column_type=int, primary_key=true, required=false};
+public {size=10, column_name=ccode, column_type=int, primary_key=true, required=false} get{size=10, column_name=ccode, column_type=int, primary_key=true, required=false}() {
+	return {size=10, column_name=ccode, column_type=int, primary_key=true, required=false}
 }
 
-public void set#00$02$m:fld:ccode$m:fld_map:column_name$#() {
-	this.#00$02$m:fld:ccode$m:fld_map:column_name$# = #00$02$m:fld:ccode$m:fld_map:column_name$#
+public void set{size=10, column_name=ccode, column_type=int, primary_key=true, required=false}() {
+	this.{size=10, column_name=ccode, column_type=int, primary_key=true, required=false} = {size=10, column_name=ccode, column_type=int, primary_key=true, required=false}
 }
 
-@ApiNodelProperty(required = #00$02$m:fld:cname$m:fld_map:required$#, value = "(#00$02$m:fld:cname$m:fld_map:size$#)")
-#@Id#
-#@GeneratedValue(strategy=GenerationType.IDENTITY)#
-@Column(name = "#00$02$m:fld:cname$m:fld_map:column_name$#")
-private #00$02$m:fld:cname$m:fld_map:column_type$# #00$02$m:fld:cname$m:fld_map:column_name$#;
-public #00$02$m:fld:cname$m:fld_map:column_name$# get#00$02$m:fld:cname$m:fld_map:column_name$#() {
-	return #00$02$m:fld:cname$m:fld_map:column_name$#
+@ApiNodelProperty(required = {size=100, column_name=cname, column_type=String, primary_key=false, required=true}, value = "({size=100, column_name=cname, column_type=String, primary_key=false, required=true})")
+@Column(name = "{size=100, column_name=cname, column_type=String, primary_key=false, required=true}")
+private {size=100, column_name=cname, column_type=String, primary_key=false, required=true} {size=100, column_name=cname, column_type=String, primary_key=false, required=true};
+public {size=100, column_name=cname, column_type=String, primary_key=false, required=true} get{size=100, column_name=cname, column_type=String, primary_key=false, required=true}() {
+	return {size=100, column_name=cname, column_type=String, primary_key=false, required=true}
 }
 
-public void set#00$02$m:fld:cname$m:fld_map:column_name$#() {
-	this.#00$02$m:fld:cname$m:fld_map:column_name$# = #00$02$m:fld:cname$m:fld_map:column_name$#
+public void set{size=100, column_name=cname, column_type=String, primary_key=false, required=true}() {
+	this.{size=100, column_name=cname, column_type=String, primary_key=false, required=true} = {size=100, column_name=cname, column_type=String, primary_key=false, required=true}
 }
 
 }
