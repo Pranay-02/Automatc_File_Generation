@@ -33,27 +33,44 @@ public class ProcessSubstitution {
 
     public String processTemplate(String template) {
         ArrayList<String> hashStrings = ut.extractSubstringsByHash(template);
-        ArrayList<String> substitutes = processHash(hashStrings);
-
+        
         for (int i = 0; i < hashStrings.size(); i++) {
-            String var = "#" + hashStrings.get(i) + "#";
-            template = substitue(template, var, substitutes.get(i));
+            String hashString = hashStrings.get(i);
+            String substitutedString = "";
+            if(mapsUtil.substitutionMap.containsKey(hashString)) {
+                substitutedString = mapsUtil.substitutionMap.get(hashString);
+            }
+            else {
+                substitutedString = processHash(hashString);
+                mapsUtil.substitutionMap.put(hashString, substitutedString);
+            }
+
+            String var = "#" + hashString + "#";
+            template = substitue(template, var, substitutedString);
         }
         
         return template;
 
     }
 
-    public ArrayList<String> processHash(ArrayList<String> hashStrings) {
-        ArrayList<String> substitutes = new ArrayList<>();
-        for (int i = 0; i < hashStrings.size(); i++) {
-            String substiutedValue = "";
-            ArrayList<String> dollarStrings = ut.extractTokensByDollar(hashStrings.get(i));
-            substiutedValue = processDollar(dollarStrings);
-            substitutes.add(substiutedValue);
-        }
+    public String processHash(String hashStrings) {
+        String substiutedValue = "";
+        ArrayList<String> dollarStrings = ut.extractTokensByDollar(hashStrings);
+        substiutedValue = processTypeOfSubstitution(dollarStrings);
+    
+        return substiutedValue;
+    }
 
-        return substitutes;
+    public String processTypeOfSubstitution(ArrayList<String> dollarStrings) {
+        String typeOfSubstitution = dollarStrings.get(0);
+        String substituedString = "";
+        switch(typeOfSubstitution) {
+            case "00": //single substitution
+                substituedString = processDollar(dollarStrings);
+                break;
+        }
+        return substituedString;
+
     }
 
     public String processDollar(ArrayList<String> dollarStrings) {
@@ -65,10 +82,16 @@ public class ProcessSubstitution {
                 ArrayList<String> semiColonStrings = ut.extractTokensBySemiColon(tobeSubstiuted);
                 substiutedValue = processSemiColon(semiColonStrings);
                 break;
-            case "02": // substitution from map of map
-                String maptobesubstiuted = dollarStrings.get(2);
-                ArrayList<String> semicolonStrings = ut.extractTokensBySemiColon(maptobesubstiuted);
-                substiutedValue = processSemiColon(semicolonStrings);
+            case "02": // substitution from 2 places
+                String sub = dollarStrings.get(2);
+                ArrayList<String> semicolonstrings = ut.extractTokensBySemiColon(sub);
+                String condition = processSemiColon(semicolonstrings);
+                if(condition.equals("true")) {
+                    sub = dollarStrings.get(3);
+                    ArrayList<String> constData = ut.extractTokensBySemiColon(sub);
+                    substiutedValue = processSemiColon(constData);
+                }
+                
                 break;
         }
 
@@ -85,6 +108,17 @@ public class ProcessSubstitution {
                 Map<String, ?> map = getMap(mapToBeUsed);
                 substitutedString = String.valueOf(map.get(keyOfMap));                    
                 break;
+            
+                case "m2" : // substitute from map of map
+                String parentMapString = semiColonStrings.get(1);
+                String keyOfParentMap = semiColonStrings.get(2);
+                String keyOfChildMap = semiColonStrings.get(3);
+
+                Map<String, ?> parentmap = getMap(parentMapString);
+                Map<String, String> childMap = (Map<String, String>) parentmap.get(keyOfParentMap);
+                substitutedString = childMap.get(keyOfChildMap);
+                break;
+
             case "c" : // substitute a constant
                 substitutedString = semiColonStrings.get(1);
                 break;

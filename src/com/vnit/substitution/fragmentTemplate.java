@@ -3,23 +3,23 @@ package com.vnit.substitution;
 public class fragmentTemplate {
 
     public String getFieldFragments(String columnName) {
-        String temp = "";
+        String temp = "\n";
       
-        temp += "@ApiNodelProperty(required = #00$02$m:fld:" + columnName + "$m:fld_map:required$#,"; 
-        temp += " value = \"(#00$02$m:fld:" + columnName +"$m:fld_map:size$#)\")\n";
+        temp += "@ApiModelProperty(required = #00$01$m2:fld:" + columnName + ":required$#,"; 
+        temp += " value = \"(#00$01$m2:fld:" + columnName +":size$#)\")\n";
 
-    //  for primary key only
-        // temp += "#@Id#\n";
-        // temp += "#@GeneratedValue(strategy=GenerationType.IDENTITY)#\n";
+        // for primary key only
+        temp += "#00$02$m2:fld:" + columnName + ":primary_key$c:@Id\n$#";
+        temp += "#00$02$m2:fld:" + columnName + ":primary_key$c:@GeneratedValue(strategy=GenerationType.IDENTITY)\n$#";
         
-        temp += "@Column(name = \"#00$02$m:fld:" + columnName + "$m:fld_map:column_name$#\")\n";
-        temp += "private #00$02$m:fld:" + columnName + "$m:fld_map:column_type$# #00$02$m:fld:" + columnName + "$m:fld_map:column_name$#;\n";
+        temp += "@Column(name = \"#00$01$m2:fld:" + columnName + ":column_name$#\")\n";
+        temp += "private #00$01$m2:fld:" + columnName + ":column_type$# #00$01$m2:fld:" + columnName + ":column_name$#;\n\n";
 
-        temp += "public #00$02$m:fld:" + columnName + "$m:fld_map:column_name$# get#00$02$m:fld:" + columnName + "$m:fld_map:column_name$#() {\n" + 
-                "\treturn #00$02$m:fld:" + columnName + "$m:fld_map:column_name$#\n" + "}\n\n";
+        temp += "public #00$01$m2:fld:" + columnName + ":column_type$# get#00$01$m2:fld:" + columnName + ":column_name$#() {\n" + 
+                "\treturn #00$01$m2:fld:" + columnName + ":column_name$#;\n" + "}\n\n";
 
-        temp += "public void set#00$02$m:fld:" + columnName + "$m:fld_map:column_name$#() {\n" +
-                "\tthis.#00$02$m:fld:" + columnName + "$m:fld_map:column_name$# = #00$02$m:fld:" + columnName + "$m:fld_map:column_name$#\n";
+        temp += "public void set#00$01$m2:fld:" + columnName + ":column_name$#() {\n" +
+                "\tthis.#00$01$m2:fld:" + columnName + ":column_name$# = #00$01$m2:fld:" + columnName + ":column_name$#;\n";
         
         temp += "}\n\n";
 

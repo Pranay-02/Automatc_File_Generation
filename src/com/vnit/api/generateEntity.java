@@ -19,11 +19,8 @@ public class generateEntity {
     
     public String generateFile(String tableName, Connection con, dbUtility db, template temp) {
         ArrayList<Object> columns = db.getColumns(tableName, con);
-        // String fileContent = temp.getFile(tableName, columns, db);
-
         ProcessSubstitution processSubstitution = new ProcessSubstitution();
         String fileContent = processSubstitution.getCompleteTemplate(columns);
-
         return fileContent;
     }
 
