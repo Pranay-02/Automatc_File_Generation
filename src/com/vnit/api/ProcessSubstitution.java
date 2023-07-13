@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.vnit.substitution.entityFragmentTemplate;
+import com.vnit.substitution.RepoTemplate;
 import com.vnit.substitution.entityFieldTemplate;
 import com.vnit.api.entity.Object;
 import com.vnit.api.util.mapsUtil;
@@ -13,9 +14,10 @@ import com.vnit.api.util.utility;
 public class ProcessSubstitution {
     entityFieldTemplate fTemplate = new entityFieldTemplate();
     entityFragmentTemplate ffTemplate = new entityFragmentTemplate();
+    RepoTemplate rTemplate = new RepoTemplate();
     utility ut = new utility();
 
-    public String getCompleteTemplate(ArrayList<Object> columns) {
+    public String getEntityTemplate(ArrayList<Object> columns) {
         String template = ""; 
         
         template += fTemplate.getTemplate();
@@ -25,7 +27,21 @@ public class ProcessSubstitution {
             template += fragments;
         }
 
-        template += '}';
+        template += fTemplate.getClosingBracket();
+        template = processTemplate(template);
+
+        return template;
+    }
+
+    public String getRepoTemplate(String columnName) {
+        String template = "";
+        
+        template += rTemplate.getRepoFieldTemplate();
+        template += rTemplate.getObjectTemplate();
+        template += rTemplate.postObjectTemplate(columnName);
+        template += rTemplate.deleteObjectTemplate();
+        template += rTemplate.getClosingBracket();
+
         template = processTemplate(template);
 
         return template;

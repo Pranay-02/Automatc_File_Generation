@@ -6,7 +6,10 @@ import java.io.*;
 import com.vnit.api.entity.Object;
 
 public class dbUtility {
-    
+
+    private ArrayList<Object> columns =  new ArrayList<>();
+    private Set<String> primaryKeyColumns = new HashSet<>();
+        
     public void fillMap(String filePath) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;    
@@ -54,20 +57,13 @@ public class dbUtility {
     }
     
     public ArrayList<Object> getColumns(String tableName, Connection connection) {        
-        ArrayList<Object> columns =  new ArrayList<>();
-
         try {
 
             DatabaseMetaData metaData = connection.getMetaData();
             ResultSet columnDetails = metaData.getColumns(null, null, tableName, null);
-            ResultSet primaryKeysResultSet = metaData.getPrimaryKeys(null, null, tableName);
 
             //get primary ket details
-            Set<String> primaryKeyColumns = new HashSet<>();
-            while (primaryKeysResultSet.next()) {
-                String primaryKeyColumnName = primaryKeysResultSet.getString("COLUMN_NAME");
-                primaryKeyColumns.add(primaryKeyColumnName);
-            }
+            getPrimaryKeyColumns(metaData, tableName);
 
             // Process and print the column details
             while (columnDetails.next()) {
@@ -97,6 +93,27 @@ public class dbUtility {
         }
 
         return columns;
+    }
+
+    public Set<String> getPrimaryKeyColumns(DatabaseMetaData metaData, String tableName) {    
+        try {
+            ResultSet primaryKeysResultSet = metaData.getPrimaryKeys(null, null, tableName);
+
+            while (primaryKeysResultSet.next()) {
+                String primaryKeyColumnName = primaryKeysResultSet.getString("COLUMN_NAME");
+                primaryKeyColumns.add(primaryKeyColumnName);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return primaryKeyColumns;
+    }
+
+    public String getPrimaryKeyColumn() {
+        ArrayList<String> list = new ArrayList<>(primaryKeyColumns);
+        return list.get(0);
     }
 
     public String getDBVariableMapping(String dbVariable) {

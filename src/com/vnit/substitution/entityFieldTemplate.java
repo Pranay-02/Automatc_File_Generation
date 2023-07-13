@@ -12,8 +12,12 @@ public class entityFieldTemplate {
         temp += "@Entity\n" + 
                 "@Table(name=\"" + "#$00$01$m:constantsMap:table_name$#" +  "\")\n";
 
-        temp += "public class "  + "#$00$01$m:constantsMap:table_name$#" + "Mst {\n";
+        temp += "public class "  + "#$00$01$m:constantsMap:cap_table_name$#" + "Mst {\n";
         
         return temp;
+    }
+
+    public String getClosingBracket() {
+        return "}";
     }
 }

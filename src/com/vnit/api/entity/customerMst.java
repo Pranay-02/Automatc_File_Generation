@@ -4,7 +4,7 @@ import javax.persistence.Column;import javax.persistence.Entity;import javax.per
 
 @Entity
 @Table(name="customer")
-public class customerMst {
+public class CustomerMst {
 
 @ApiModelProperty(required = false, value = "(10)")
 @Id
