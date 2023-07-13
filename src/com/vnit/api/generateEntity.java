@@ -6,8 +6,6 @@ import java.util.*;
 
 import com.vnit.api.util.*;
 import com.vnit.api.entity.Object;
-import com.vnit.substitution.*;
-
 
 public class generateEntity {
 
@@ -17,7 +15,7 @@ public class generateEntity {
     //     this.tableName = tableName;
     // }
     
-    public String generateFile(String tableName, Connection con, dbUtility db, template temp) {
+    public String generateFile(String tableName, Connection con, dbUtility db) {
         ArrayList<Object> columns = db.getColumns(tableName, con);
         ProcessSubstitution processSubstitution = new ProcessSubstitution();
         String fileContent = processSubstitution.getCompleteTemplate(columns);
@@ -29,15 +27,14 @@ public class generateEntity {
         dbUtility db = new dbUtility();
         fileUtility ut = new fileUtility();
         generateEntity entity = new generateEntity();
-        template temp = new template();
-
+       
         String propertiesFillPath = ut.getFilePath();
         db.fillMap(propertiesFillPath + "properties.txt");
 
         Connection con = db.createDBConnection();   
         
         mapsUtil.constantsMap.put("table_name", "customer");
-        String file = entity.generateFile("customer", con, db, temp);
+        String file = entity.generateFile("customer", con, db);
         
         try {
             ut.createFileFromString(propertiesFillPath + "entity\\customerMst.java", file);

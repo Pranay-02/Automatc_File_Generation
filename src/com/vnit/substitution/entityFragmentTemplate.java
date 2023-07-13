@@ -1,6 +1,6 @@
 package com.vnit.substitution;
 
-public class fragmentTemplate {
+public class entityFragmentTemplate {
 
     public String getFieldFragments(String columnName) {
         String temp = "\n";

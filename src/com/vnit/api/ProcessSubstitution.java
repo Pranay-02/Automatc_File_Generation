@@ -4,15 +4,15 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Map;
 
-import com.vnit.substitution.fragmentTemplate;
-import com.vnit.substitution.fieldTemplate;
+import com.vnit.substitution.entityFragmentTemplate;
+import com.vnit.substitution.entityFieldTemplate;
 import com.vnit.api.entity.Object;
 import com.vnit.api.util.mapsUtil;
 import com.vnit.api.util.utility;
 
 public class ProcessSubstitution {
-    fieldTemplate fTemplate = new fieldTemplate();
-    fragmentTemplate ffTemplate = new fragmentTemplate();
+    entityFieldTemplate fTemplate = new entityFieldTemplate();
+    entityFragmentTemplate ffTemplate = new entityFragmentTemplate();
     utility ut = new utility();
 
     public String getCompleteTemplate(ArrayList<Object> columns) {
