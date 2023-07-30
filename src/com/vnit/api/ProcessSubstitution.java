@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.vnit.substitution.entityFragmentTemplate;
+import com.vnit.substitution.ControllerTemplate;
 import com.vnit.substitution.RepoTemplate;
 import com.vnit.substitution.entityFieldTemplate;
 import com.vnit.api.entity.Object;
@@ -15,6 +16,7 @@ public class ProcessSubstitution {
     entityFieldTemplate fTemplate = new entityFieldTemplate();
     entityFragmentTemplate ffTemplate = new entityFragmentTemplate();
     RepoTemplate rTemplate = new RepoTemplate();
+    ControllerTemplate cTemplate = new ControllerTemplate();
     utility ut = new utility();
 
     public String getEntityTemplate(ArrayList<Object> columns) {
@@ -44,6 +46,19 @@ public class ProcessSubstitution {
 
         template = processTemplate(template);
 
+        return template;
+    }
+
+    public String getControllerTemplate(ArrayList<Object> columns, String primaryColumnName) {
+        String template = "";
+        
+        template += cTemplate.getControllerFieldTemplate();
+        template += cTemplate.getControllerCreateTemplate(columns, primaryColumnName);
+        template += cTemplate.getControllerDeleteTemplate(primaryColumnName);
+        template += cTemplate.getControllerGetTemplate(primaryColumnName);
+        template += cTemplate.getClosingBracket();
+        template = processTemplate(template);
+        
         return template;
     }
 

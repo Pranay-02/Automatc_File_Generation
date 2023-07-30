@@ -9,20 +9,28 @@ import com.vnit.api.entity.Object;
 
 public class generateEntity {
 
+    ProcessSubstitution processSubstitution;
     private static String tableName = "customer";
     
+    generateEntity() {
+        processSubstitution = new ProcessSubstitution();
+    }
+
+    
     public String generateEntityFile(ArrayList<Object> columns) {
-        ProcessSubstitution processSubstitution = new ProcessSubstitution();
         String fileContent = processSubstitution.getEntityTemplate(columns);
         return fileContent;
     }
 
     public String generateRepoFile(String columnName) {
-        ProcessSubstitution processSubstitution = new ProcessSubstitution();
         String fileContent = processSubstitution.getRepoTemplate(columnName);
         return fileContent;
     }
 
+    public String generateControllerFile(ArrayList<Object> columns, String columnName) {
+        String fileContent = processSubstitution.getControllerTemplate(columns, columnName);
+        return fileContent;
+    }
 
     public static void main(String[] args) {
 
@@ -46,10 +54,12 @@ public class generateEntity {
 
         String entityFile = entity.generateEntityFile(columns);
         String repoFile = entity.generateRepoFile(primaryKeyColumn);
+        String controllerFile = entity.generateControllerFile(columns, primaryKeyColumn);
         
         try {
             ut.createFileFromString(propertiesFillPath + "entity\\" + capTableName +"Mst.java", entityFile);
-            ut.createFileFromString(propertiesFillPath + "repo\\" + capTableName +"Repo.java", repoFile);
+            ut.createFileFromString(propertiesFillPath + "repo\\" + capTableName + "Repo.java", repoFile);
+            ut.createFileFromString(propertiesFillPath + "controller\\" + capTableName + "Controller.java", controllerFile);
         }
         catch(IOException exception) {
             System.out.println("Not able to create file");
