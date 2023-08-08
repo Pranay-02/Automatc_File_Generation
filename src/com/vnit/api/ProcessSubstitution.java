@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.vnit.substitution.entityFragmentTemplate;
 import com.vnit.substitution.ControllerTemplate;
+import com.vnit.substitution.CssTemplate;
 import com.vnit.substitution.RepoTemplate;
 import com.vnit.substitution.entityFieldTemplate;
 import com.vnit.api.entity.Object;
@@ -17,6 +18,7 @@ public class ProcessSubstitution {
     entityFragmentTemplate ffTemplate = new entityFragmentTemplate();
     RepoTemplate rTemplate = new RepoTemplate();
     ControllerTemplate cTemplate = new ControllerTemplate();
+    CssTemplate cssTemplate = new CssTemplate();
     utility ut = new utility();
 
     public String getEntityTemplate(ArrayList<Object> columns) {
@@ -59,6 +61,13 @@ public class ProcessSubstitution {
         template += cTemplate.getClosingBracket();
         template = processTemplate(template);
         
+        return template;
+    }
+
+    public String getCSSTemplate() {
+        String template = "";
+
+        template += cssTemplate.getCssString();
         return template;
     }
 

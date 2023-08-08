@@ -32,6 +32,11 @@ public class generateEntity {
         return fileContent;
     }
 
+    public String generateCssFile() {
+        String fileContent = processSubstitution.getCSSTemplate();
+        return fileContent;
+    }
+
     public static void main(String[] args) {
 
         dbUtility db = new dbUtility();
@@ -55,11 +60,13 @@ public class generateEntity {
         String entityFile = entity.generateEntityFile(columns);
         String repoFile = entity.generateRepoFile(primaryKeyColumn);
         String controllerFile = entity.generateControllerFile(columns, primaryKeyColumn);
+        String cssFile = entity.generateCssFile();
         
         try {
             ut.createFileFromString(propertiesFillPath + "entity\\" + capTableName +"Mst.java", entityFile);
             ut.createFileFromString(propertiesFillPath + "repo\\" + capTableName + "Repo.java", repoFile);
             ut.createFileFromString(propertiesFillPath + "controller\\" + capTableName + "Controller.java", controllerFile);
+            ut.createFileFromString(propertiesFillPath + "frontend\\" + capTableName + ".css", cssFile);
         }
         catch(IOException exception) {
             System.out.println("Not able to create file");

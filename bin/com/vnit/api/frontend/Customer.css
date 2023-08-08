@@ -1,0 +1,45 @@
+:host ::ng-deep .p-dropdown {
+	width: 100%;
+	/* border: 1px solid red; */
+}
+
+fieldset.scheduler-border {
+	border: 1px groove #ddd !important;
+	margin: 0 0 1.5em 0 !important;
+	-webkit-box-shadow:  0px 0px 0px 0px #000;
+	box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.scheduler-border {
+	font-size: 1.2em !important;
+	font-weight: bold !important;
+	text-align: left !important;
+	width:auto;
+	padding:0 10px;
+	border-bottom:none;
+	margin-bottom: 0px !important;
+}
+
+:host ::ng-deep .prime-override-css{
+	border: 1px solid red;
+}
+
+.cancel_button {
+	border-radius: 22px;
+	opacity: 1;
+	width: 90px;
+	height: 30px;
+}
+
+:host ::ng-deep .tabview-custom i, :host ::ng-deep .tabview-custom span {
+	vertical-align: middle;
+}
+
+:host ::ng-deep .tabview-custom span {
+	margin: 0 0.5rem;
+}
+
+:host ::ng-deep .p-button {
+	margin-right: 0.25rem;
+}
+
