@@ -7,6 +7,7 @@ import java.util.Map;
 import com.vnit.substitution.entityFragmentTemplate;
 import com.vnit.substitution.ControllerTemplate;
 import com.vnit.substitution.CssTemplate;
+import com.vnit.substitution.HTMLTemplate;
 import com.vnit.substitution.RepoTemplate;
 import com.vnit.substitution.entityFieldTemplate;
 import com.vnit.api.entity.Object;
@@ -18,6 +19,7 @@ public class ProcessSubstitution {
     entityFragmentTemplate ffTemplate = new entityFragmentTemplate();
     RepoTemplate rTemplate = new RepoTemplate();
     ControllerTemplate cTemplate = new ControllerTemplate();
+    HTMLTemplate htmlTemplate = new HTMLTemplate();
     CssTemplate cssTemplate = new CssTemplate();
     utility ut = new utility();
 
@@ -64,6 +66,46 @@ public class ProcessSubstitution {
         return template;
     }
 
+    public String getHtmlTemplate(ArrayList<Object> columns) {
+        String template = "";
+
+        template += htmlTemplate.getFormPart1();
+        for(int i = 0; i < columns.size(); i++) {
+            template += htmlTemplate.getFormFragment1(columns.get(i).getColumnName());
+        }
+        template += htmlTemplate.getFormPart2();
+     
+        template += getHtmlTemplateHelper(columns);
+        template += htmlTemplate.getFormPart5();
+
+        template += htmlTemplate.getListingTablePart1();
+        template += getHtmlTemplateHelper(columns);
+        template += htmlTemplate.getListingTablePart2();
+
+        template += htmlTemplate.getSaveCancelButton();
+        template += htmlTemplate.getDeleteDialog();
+
+        template = processTemplate(template);
+        return template;
+    }
+
+    public String getHtmlTemplateHelper(ArrayList<Object> columns) {
+        String template = "";
+
+        template += htmlTemplate.getFormPart3();
+        for(int i = 0; i < columns.size(); i++) {
+            template += htmlTemplate.getFormFragment2(columns.get(i).getColumnName());
+        }
+
+        template += htmlTemplate.getFormPart4();
+        for(int i = 0; i < columns.size(); i++) {
+            template += htmlTemplate.getFormFragment3(columns.get(i).getColumnName());
+        }
+
+        return template;
+
+    }
+    
     public String getCSSTemplate() {
         String template = "";
 
@@ -73,9 +115,9 @@ public class ProcessSubstitution {
 
     public String processTemplate(String template) {
         ArrayList<String> hashStrings = ut.extractSubstringsByHash(template);
-        
+
         for (int i = 0; i < hashStrings.size(); i++) {
-            String hashString = hashStrings.get(i);
+            String hashString = hashStrings.get(i); 
             String substitutedString = "";
             if(mapsUtil.substitutionMap.containsKey(hashString)) {
                 substitutedString = mapsUtil.substitutionMap.get(hashString);
@@ -85,7 +127,7 @@ public class ProcessSubstitution {
                 mapsUtil.substitutionMap.put(hashString, substitutedString);
             }
 
-            String var = "#" + hashString + "#";
+            String var = "^" + hashString + "^";
             template = substitue(template, var, substitutedString);
         }
         

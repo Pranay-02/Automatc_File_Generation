@@ -6,17 +6,21 @@ public class utility {
     
     public ArrayList<String> extractSubstringsByHash(String input) {
         ArrayList<String> substrings = new ArrayList<>();
-        int startIndex = input.indexOf('#');
+        int startIndex = input.indexOf('^');
         
         while (startIndex != -1) {
-            int endIndex = input.indexOf('#', startIndex + 1);
+            int endIndex = input.indexOf('^', startIndex + 1);
             
             if (endIndex != -1) {
                 String substring = input.substring(startIndex + 1, endIndex);
-                substrings.add(substring);
+                if(!substring.contains(" ") && !substring.contains("\t"))
+                    substrings.add(substring);
             }
-            
-            startIndex = input.indexOf('#', endIndex + 1);
+            else {
+                break;
+            }
+  
+            startIndex = input.indexOf('^', endIndex + 1);
         }
         
         return substrings;

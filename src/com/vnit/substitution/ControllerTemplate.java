@@ -7,18 +7,18 @@ public class ControllerTemplate {
     
     public String getControllerFieldTemplate() {
         String temp = "";
-        temp += "#00$01$m:constantsMap:controller_package_name$#" + "\n\n";
-        temp += "#00$01$m:constantsMap:controller_imports$#" + "\n";
+        temp += "^00$01$m:constantsMap:controller_package_name$^" + "\n\n";
+        temp += "^00$01$m:constantsMap:controller_imports$^" + "\n";
 
-        temp += "import com.vnit.api.entity.#$00$01$m:constantsMap:cap_table_name$#Mst;\n";
-        temp += "import com.vnit.api.repo.#$00$01$m:constantsMap:cap_table_name$#Repo;\n\n";
+        temp += "import com.vnit.api.entity.^$00$01$m:constantsMap:cap_table_name$^Mst;\n";
+        temp += "import com.vnit.api.repo.^$00$01$m:constantsMap:cap_table_name$^Repo;\n\n";
 
         temp += "@CrossOrigin(origins=\"*\", maxAge = 3600)\n";
         temp += "@RestController\n";
 
-        temp += "public class #$00$01$m:constantsMap:cap_table_name$#Controller {\n\n";
+        temp += "public class ^$00$01$m:constantsMap:cap_table_name$^Controller {\n\n";
         temp += "\t@Autowired\n";
-        temp += "\t#$00$01$m:constantsMap:cap_table_name$#Repo repo;\n\n";
+        temp += "\t^$00$01$m:constantsMap:cap_table_name$^Repo repo;\n\n";
 
         temp += "\tMap<String, String> map = new HashMap<>();\n\n"; 
         return temp;
@@ -28,12 +28,12 @@ public class ControllerTemplate {
         String temp = "";
         
         temp += "\t@ResponseStatus (code = HttpStatus.OK)\n";
-        temp += "\t@PostMapping(path = \"/post_#$00$01$m:constantsMap:table_name$#\", produces = \"application/json\")\n";
-        temp += "\t@ApiOperation(value = \"Create or Update #$00$01$m:constantsMap:table_name$# entity\", httpMethod = \"POST\")\n";
+        temp += "\t@PostMapping(path = \"/post_^$00$01$m:constantsMap:table_name$^\", produces = \"application/json\")\n";
+        temp += "\t@ApiOperation(value = \"Create or Update ^$00$01$m:constantsMap:table_name$^ entity\", httpMethod = \"POST\")\n";
         temp += "\t@ApiResponse(code = 200, message = \"Returns a 200 response code if successful\")\n";
         
-        temp += "\tpublic String create#$00$01$m:constantsMap:cap_table_name$#";
-        temp += "(@RequestBody #$00$01$m:constantsMap:cap_table_name$#Mst body) {\n\n";
+        temp += "\tpublic String create^$00$01$m:constantsMap:cap_table_name$^";
+        temp += "(@RequestBody ^$00$01$m:constantsMap:cap_table_name$^Mst body) {\n\n";
 
         temp += "\t\tInteger status = 0;\n";
         temp += "\t\tJsonObject response = new JsonObject();\n";
@@ -48,7 +48,7 @@ public class ControllerTemplate {
         }
 
         temp += "\t\t\tif (error.entrySet().isEmpty()) {\n";
-        temp += "\t\t\t\tstatus = repo.post#$00$01$m:constantsMap:cap_table_name$#(body);\n";
+        temp += "\t\t\t\tstatus = repo.post^$00$01$m:constantsMap:cap_table_name$^(body);\n";
         temp += "\t\t\t}\n\n";
 
         temp += "\t\t} catch (Exception ex) {\n";
@@ -76,9 +76,9 @@ public class ControllerTemplate {
 
     public String getColumnsToCreate(String columnName) {
         String temp = "";
-        temp += "\t\t\tif(RestUtil.isNull(body.get" + "#00$01$m2:fld:" + columnName +":column_name$#" + "())) {\n";
-        temp += "\t\t\t\terror.addProperty(\"#00$01$m2:fld:" + columnName +":column_name$#\", ";
-        temp += "\"#00$01$m2:fld:" + columnName + ":column_name$# is required\");\n";
+        temp += "\t\t\tif(RestUtil.isNull(body.get" + "^00$01$m2:fld:" + columnName +":column_name$^" + "())) {\n";
+        temp += "\t\t\t\terror.addProperty(\"^00$01$m2:fld:" + columnName +":column_name$^\", ";
+        temp += "\"^00$01$m2:fld:" + columnName + ":column_name$^ is required\");\n";
         temp += "\t\t\t}\n\n";
         return temp;
     }
@@ -87,11 +87,11 @@ public class ControllerTemplate {
         String temp = "";
         
         temp += "\t@ResponseStatus (code = HttpStatus.OK)\n";
-        temp += "\t@DeleteMapping(path = \"/delete_#$00$01$m:constantsMap:table_name$#/{" + getVariableString() +"}\", produces = \"application/json\")\n";
-        temp += "\t@ApiOperation(value = \"delete #$00$01$m:constantsMap:table_name$# entity\", httpMethod = \"DELETE\")\n";
+        temp += "\t@DeleteMapping(path = \"/delete_^$00$01$m:constantsMap:table_name$^/{" + getVariableString() +"}\", produces = \"application/json\")\n";
+        temp += "\t@ApiOperation(value = \"delete ^$00$01$m:constantsMap:table_name$^ entity\", httpMethod = \"DELETE\")\n";
         temp += "\t@ApiResponse(code = 200, message = \"Returns a 200 response code if successful\")\n";
         
-        temp += "\tpublic String delete#$00$01$m:constantsMap:cap_table_name$#";
+        temp += "\tpublic String delete^$00$01$m:constantsMap:cap_table_name$^";
         temp += "(@PathVariable (name = \"" + getVariableString() + "\") Integer id) {\n\n";
 
         temp += "\t\tInteger status = 0;\n";
@@ -105,7 +105,7 @@ public class ControllerTemplate {
         temp += "\t\t\t}\n\n";
 
         temp += "\t\t\tif (error.entrySet().isEmpty()) {\n";
-        temp += "\t\t\t\tstatus = repo.delete#$00$01$m:constantsMap:cap_table_name$#(id);\n";
+        temp += "\t\t\t\tstatus = repo.delete^$00$01$m:constantsMap:cap_table_name$^(id);\n";
         temp += "\t\t\t}\n\n";
 
         temp += "\t\t} catch (Exception ex) {\n";
@@ -134,11 +134,11 @@ public class ControllerTemplate {
         String temp = "";
         
         temp += "\t@ResponseStatus (code = HttpStatus.OK)\n";
-        temp += "\t@GetMapping(path = \"/get_#$00$01$m:constantsMap:table_name$#/{" + getVariableString() + "}\", produces = \"application/json\")\n";
-        temp += "\t@ApiOperation(value = \"get #$00$01$m:constantsMap:table_name$# entity\", httpMethod = \"GET\")\n";
+        temp += "\t@GetMapping(path = \"/get_^$00$01$m:constantsMap:table_name$^/{" + getVariableString() + "}\", produces = \"application/json\")\n";
+        temp += "\t@ApiOperation(value = \"get ^$00$01$m:constantsMap:table_name$^ entity\", httpMethod = \"GET\")\n";
         temp += "\t@ApiResponse(code = 200, message = \"Returns a 200 response code if successful\")\n";
         
-        temp += "\tpublic String get#$00$01$m:constantsMap:cap_table_name$#";
+        temp += "\tpublic String get^$00$01$m:constantsMap:cap_table_name$^";
         temp += "(@PathVariable(name = \"" + getVariableString() +"\") Integer id) {\n\n";
 
         temp += "\t\tJsonObject response = new JsonObject();\n";
@@ -152,7 +152,7 @@ public class ControllerTemplate {
 
         temp += "\t\t\tif (error.entrySet().isEmpty()) {\n";
         temp += "\t\t\t\tObjectMapper mapper = new ObjectMapper();\n";
-        temp += "\t\t\t\treturn mapper.writeValueAsString(repo.get#$00$01$m:constantsMap:cap_table_name$#(id));\n";
+        temp += "\t\t\t\treturn mapper.writeValueAsString(repo.get^$00$01$m:constantsMap:cap_table_name$^(id));\n";
         temp += "\t\t\t}\n\n";
 
         temp += "\t\t} catch (Exception ex) {\n";
@@ -176,7 +176,7 @@ public class ControllerTemplate {
  
     // confirm 
     public String getVariableString() {
-        String str = "#$00$01$m:constantsMap:table_name$#id";
+        String str = "^$00$01$m:constantsMap:table_name$^id";
         return str;
     }
 }
