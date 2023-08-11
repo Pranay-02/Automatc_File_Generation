@@ -9,6 +9,8 @@ import com.vnit.substitution.ControllerTemplate;
 import com.vnit.substitution.CssTemplate;
 import com.vnit.substitution.HTMLTemplate;
 import com.vnit.substitution.RepoTemplate;
+import com.vnit.substitution.SpecTSTemplate;
+import com.vnit.substitution.TSTemplate;
 import com.vnit.substitution.entityFieldTemplate;
 import com.vnit.api.entity.Object;
 import com.vnit.api.util.mapsUtil;
@@ -21,6 +23,8 @@ public class ProcessSubstitution {
     ControllerTemplate cTemplate = new ControllerTemplate();
     HTMLTemplate htmlTemplate = new HTMLTemplate();
     CssTemplate cssTemplate = new CssTemplate();
+    SpecTSTemplate specTSTemplate = new SpecTSTemplate();
+    TSTemplate tsTemplate = new TSTemplate();
     utility ut = new utility();
 
     public String getEntityTemplate(ArrayList<Object> columns) {
@@ -110,6 +114,20 @@ public class ProcessSubstitution {
         String template = "";
 
         template += cssTemplate.getCssString();
+        return template;
+    }
+
+    public String getSpecTSTemplate() {
+        String template = "";
+        template += specTSTemplate.getSpecTSString();
+        template = processTemplate(template);
+        return template;
+    }
+
+    public String getTSTemplate(ArrayList<Object> columns) {
+        String template = "";
+        template += tsTemplate.getTSString(columns);
+        template = processTemplate(template);
         return template;
     }
 

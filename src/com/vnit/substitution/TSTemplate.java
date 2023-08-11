@@ -1,17 +1,20 @@
 package com.vnit.substitution;
 
+import java.util.ArrayList;
+import com.vnit.api.entity.Object;
+
 public class TSTemplate {
-    public String getTSString() {
+    public String getTSString(ArrayList<Object> columns) {
         String temp = "";
 
-        temp += "#00$01$m:constantsMap:entity_imports$#" + "\n\n";
+        temp += "^00$01$m:constantsMap:entity_imports$^" + "\n\n";
 
         temp += "@Component({\n"+
-            "\tselector: 'app-#$00$01$m:constantsMap:table_name$#-master',\n"+
-            "\ttemplateUrl: './#$00$01$m:constantsMap:table_name$#-master.component.html',\n"+
-            "\tstyleUrls: ['./#$00$01$m:constantsMap:table_name$#-master.component.css']\n"+
+            "\tselector: 'app-^$00$01$m:constantsMap:table_name$^-master',\n"+
+            "\ttemplateUrl: './^$00$01$m:constantsMap:table_name$^-master.component.html',\n"+
+            "\tstyleUrls: ['./^$00$01$m:constantsMap:table_name$^-master.component.css']\n"+
           "})\n\n"+
-          "export class #$00$01$m:constantsMap:cap_table_name$#MasterComponent implements OnInit {\n"+
+          "export class ^$00$01$m:constantsMap:cap_table_name$^MasterComponent implements OnInit {\n"+
             "\t@ViewChild('f', { static: false }) form: NgForm;\n"+
             "\tmodel: any = {}\n"+
             "\tmodelOneArray: any = [];\n"+
@@ -58,7 +61,7 @@ public class TSTemplate {
            "\t}\n"+
            "\taddModelOneArray() {\n"+
                 "\t\tif (this.configService.isNullUndefined(this.model.cname) === false) {\n"+
-                  "\t\t\tthis.notificationServices.showNotification(\'error\', \"#$00$01$m:constantsMap:cap_table_name$# Name Required\");\n"+
+                  "\t\t\tthis.notificationServices.showNotification(\'error\', \"^$00$01$m:constantsMap:cap_table_name$^ Name Required\");\n"+
                   "\t\t\tdocument.getElementById(\"cname\").focus();\n"+
                   "\t\t\treturn false;\n"+
                 "\t\t}\n"+
@@ -118,7 +121,7 @@ public class TSTemplate {
             "\t}\n\n"+
             "\tasync saveElement(element) {\n"+
                 "\t\treturn new Promise(resolve => {\n"+
-                  "\t\t\tthis.crudService.commonActionPerformPost(credentials.INVENTORY + \'post_#$00$01$m:constantsMap:table_name$#\', element).subscribe(async (response) => {\n"+
+                  "\t\t\tthis.crudService.commonActionPerformPost(credentials.INVENTORY + \'post_^$00$01$m:constantsMap:table_name$^\', element).subscribe(async (response) => {\n"+
                     "\t\t\t\tif (response.status === await \"Success\") {\n"+
                       "\t\t\t\t\treturn resolve(response);\n"+
                     "\t\t\t\t}\n"+
@@ -140,7 +143,7 @@ public class TSTemplate {
               "\t}\n\n"+
               "\tconfirmDelete(){\n"+
               "\t\tthis.configService.enabledLoader()\n"+
-                "\t\tthis.crudService.commonActionPerformDelete(credentials.INVENTORY + \'delete_#$00$01$m:constantsMap:table_name$#/\'+ this.model.ccode).subscribe(async (response) => {\n"+
+                "\t\tthis.crudService.commonActionPerformDelete(credentials.INVENTORY + \'delete_^$00$01$m:constantsMap:table_name$^/\'+ this.model.ccode).subscribe(async (response) => {\n"+
                   "\t\t\tif (response.status === await \"Success\") {\n"+
                     "\t\t\t\tthis.notificationServices.showNotification(\'error\', response.message);\n"+
                     "\t\t\t\tthis.onRefresh()\n"+

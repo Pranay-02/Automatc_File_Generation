@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.*;
 
 import com.vnit.api.util.*;
+import com.vnit.substitution.entityFieldTemplate;
 import com.vnit.api.entity.Object;
 
 public class generateEntity {
@@ -42,6 +43,16 @@ public class generateEntity {
         return fileContent;
     }
 
+    public String generateSpecTSFile() {
+        String fileContent = processSubstitution.getSpecTSTemplate();
+        return fileContent;
+    }
+
+    public String generateTSFile(ArrayList<Object> columns) {
+        String fileContent = processSubstitution.getTSTemplate(columns);
+        return fileContent;
+    }
+
     public static void main(String[] args) {
 
         dbUtility db = new dbUtility();
@@ -67,6 +78,8 @@ public class generateEntity {
         String controllerFile = entity.generateControllerFile(columns, primaryKeyColumn);
         String cssFile = entity.generateCssFile();
         String htmlFile = entity.generateHtmlFile(columns);
+        String specTsFile = entity.generateSpecTSFile();
+        String tsFile = entity.generateTSFile(columns);
         
         try {
             ut.createFileFromString(propertiesFillPath + "entity\\" + capTableName +"Mst.java", entityFile);
@@ -74,6 +87,8 @@ public class generateEntity {
             ut.createFileFromString(propertiesFillPath + "controller\\" + capTableName + "Controller.java", controllerFile);
             ut.createFileFromString(propertiesFillPath + "frontend\\" + capTableName + ".css", cssFile);
             ut.createFileFromString(propertiesFillPath + "frontend\\" + capTableName + ".html", htmlFile);
+            ut.createFileFromString(propertiesFillPath + "frontend\\" + capTableName + ".spec.ts", specTsFile);
+            ut.createFileFromString(propertiesFillPath + "frontend\\" + capTableName + ".ts", tsFile);
         }
         catch(IOException exception) {
             System.out.println("Not able to create file");

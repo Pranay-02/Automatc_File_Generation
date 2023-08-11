@@ -34,7 +34,7 @@ export class CustomerMasterComponent implements OnInit {
 
 	getModelList(name){
 		this.modelList = []
-		this.crudService.commonActionPerformGet(credentials.INVENTORY + 'get_customer_list' + \`${"?"+'name='}\`+name).subscribe(response => {
+		this.crudService.commonActionPerformGet(credentials.INVENTORY + 'get_customer_list' + `${"?"+'name='}`+name).subscribe(response => {
 			this.modelList = response.data;
 		}, (error) => {
 			console.log("getRewsRoomListError=", JSON.stringify(error));
